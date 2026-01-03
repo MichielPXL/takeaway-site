@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SeaSalt Takeaway</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand__logo" aria-hidden="true">🍜</div>
+            <div>
+                <h1 class="brand__title">SeaSalt Takeaway</h1>
+                <p class="brand__tagline">Bestel snel — vers bereid — afhalen of levering</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav__link" href="./index.html" aria-current="page">Menu</a>
+            <a class="nav__link" href="./contact.html">Contact</a>
+
+            <button id="cartButton" class="btn btn--primary" type="button" aria-label="Winkelmand bekijken">
+                🧺 Winkelmand <span id="cartCount" class="pill">0</span>
+            </button>
+
+            <button id="adminButton" class="btn btn--ghost" type="button">
+                🔐 Admin
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <div class="hero__content">
+            <h2>Vandaag zin in iets lekkers?</h2>
+            <p>Kies uit ons menu. Veggie-gerechten zijn duidelijk gemarkeerd 🌿.</p>
+        </div>
+        <div class="hero__actions">
+            <div class="notice" id="pageMessage" role="status" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <!-- GERECHT VAN DE DAG -->
+    <section class="section">
+        <div class="section__header">
+            <h3>Gerecht van de dag</h3>
+            <div class="section__tools">
+                <button id="editDishOfDayButton" class="btn btn--ghost hidden" type="button" title="Bewerk gerecht van de dag">
+                    ✏️ Aanpassen
+                </button>
+            </div>
+        </div>
+
+        <div id="dishOfDay" class="featured-card" aria-live="polite"></div>
+    </section>
+
+    <!-- FILTERS/SORT -->
+    <section class="section">
+        <div class="panel">
+            <div class="panel__row">
+                <div class="field">
+                    <label class="label" for="filterVeggie">Filter</label>
+                    <select id="filterVeggie" class="input">
+                        <option value="all">Alles</option>
+                        <option value="veggie">Alleen veggie</option>
+                        <option value="non-veggie">Geen veggie</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="sortMode">Sorteren (per categorie)</label>
+                    <select id="sortMode" class="input">
+                        <option value="price-asc">Prijs: laag → hoog</option>
+                        <option value="price-desc">Prijs: hoog → laag</option>
+                        <option value="name-asc">Naam: A → Z</option>
+                        <option value="name-desc">Naam: Z → A</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="searchQuery">Zoeken</label>
+                    <input id="searchQuery" class="input" type="search" placeholder="bv. ramen, pasta, soep..." />
+                </div>
+            </div>
+
+            <p class="panel__hint">
+                Tip: Klik meerdere keren op “Toevoegen” om aantallen te verhogen. Max per gerecht wordt afgedwongen.
+            </p>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section">
+        <h3>Menu</h3>
+        <div id="menuRoot" class="menu-root"></div>
+    </section>
+</main>
+
+<!-- ADMIN MODAL -->
+<dialog id="adminModal" class="modal">
+    <form method="dialog" class="modal__card">
+        <div class="modal__header">
+            <h3>Admin login</h3>
+            <button class="icon-btn" value="cancel" aria-label="Sluiten">✖</button>
+        </div>
+
+        <p class="muted">
+            (Voor deze opdracht staan de juiste gegevens hardcoded in <code>js/common.js</code>.)
+        </p>
+
+        <div class="field">
+            <label class="label" for="adminUser">Gebruikersnaam</label>
+            <input id="adminUser" class="input" autocomplete="username" />
+        </div>
+
+        <div class="field">
+            <label class="label" for="adminPass">Wachtwoord</label>
+            <input id="adminPass" class="input" type="password" autocomplete="current-password" />
+        </div>
+
+        <div id="adminMessage" class="notice" role="status" aria-live="polite"></div>
+
+        <div class="modal__actions">
+            <button id="adminLoginButton" class="btn btn--primary" type="button">Inloggen</button>
+            <button id="adminLogoutButton" class="btn btn--ghost hidden" type="button">Uitloggen</button>
+        </div>
+    </form>
+</dialog>
+
+<!-- DISH OF DAY EDIT MODAL -->
+<dialog id="dishModal" class="modal">
+    <form method="dialog" class="modal__card">
+        <div class="modal__header">
+            <h3>Gerecht van de dag aanpassen</h3>
+            <button class="icon-btn" value="cancel" aria-label="Sluiten">✖</button>
+        </div>
+
+        <div class="field">
+            <label class="label" for="dishPick">Kies bestaand gerecht</label>
+            <select id="dishPick" class="input"></select>
+            <p class="muted">Of vul hieronder zelf iets in (nieuw gerecht mag ook).</p>
+        </div>
+
+        <div class="panel">
+            <div class="panel__row">
+                <div class="field">
+                    <label class="label" for="dishName">Naam</label>
+                    <input id="dishName" class="input" />
+                </div>
+                <div class="field">
+                    <label class="label" for="dishCategory">Categorie</label>
+                    <input id="dishCategory" class="input" placeholder="bv. Pasta" />
+                </div>
+            </div>
+
+            <div class="panel__row">
+                <div class="field">
+                    <label class="label" for="dishPrice">Prijs (€)</label>
+                    <input id="dishPrice" class="input" type="number" step="0.01" min="0" />
+                </div>
+                <div class="field">
+                    <label class="label" for="dishVeggie">Veggie?</label>
+                    <select id="dishVeggie" class="input">
+                        <option value="false">Nee</option>
+                        <option value="true">Ja</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="dishDesc">Beschrijving</label>
+                <textarea id="dishDesc" class="input" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label class="label" for="dishMax">Max per gerecht</label>
+                <input id="dishMax" class="input" type="number" min="1" step="1" />
+            </div>
+        </div>
+
+        <div id="dishEditMessage" class="notice" role="status" aria-live="polite"></div>
+
+        <div class="modal__actions">
+            <button id="saveDishButton" class="btn btn--primary" type="button">Opslaan</button>
+        </div>
+    </form>
+</dialog>
+
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>

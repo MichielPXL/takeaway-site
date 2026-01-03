@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — SeaSalt Takeaway</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand__logo" aria-hidden="true">📩</div>
+            <div>
+                <h1 class="brand__title">Contact</h1>
+                <p class="brand__tagline">Vraag, feedback, reservatie-aanvraag (client-side validatie)</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav__link" href="./index.html">Menu</a>
+            <a class="nav__link" href="./cart.html">Winkelmand</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="section">
+        <div class="panel">
+            <h3>Contactformulier</h3>
+
+            <form id="contactForm" novalidate>
+                <div class="panel__row">
+                    <div class="field">
+                        <label class="label" for="fullName">Naam</label>
+                        <input id="fullName" class="input" />
+                        <p class="error" id="errName"></p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="email">E-mail</label>
+                        <input id="email" class="input" type="email" />
+                        <p class="error" id="errEmail"></p>
+                    </div>
+                </div>
+
+                <div class="panel__row">
+                    <div class="field">
+                        <label class="label" for="phone">Telefoon (optioneel)</label>
+                        <input id="phone" class="input" placeholder="+32..." />
+                        <p class="error" id="errPhone"></p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="topic">Onderwerp</label>
+                        <select id="topic" class="input">
+                            <option value="">Kies...</option>
+                            <option value="question">Vraag</option>
+                            <option value="booking">Boeking</option>
+                            <option value="complaint">Opmerking</option>
+                        </select>
+                        <p class="error" id="errTopic"></p>
+                    </div>
+                </div>
+
+                <div class="panel__row">
+                    <div class="field">
+                        <label class="label" for="date">Datum (voor boeking)</label>
+                        <input id="date" class="input" type="date" />
+                        <p class="error" id="errDate"></p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="people">Aantal personen (voor boeking)</label>
+                        <input id="people" class="input" type="number" min="1" step="1" />
+                        <p class="error" id="errPeople"></p>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="message">Bericht</label>
+                    <textarea id="message" class="input" rows="5"></textarea>
+                    <p class="error" id="errMessage"></p>
+                </div>
+
+                <div id="formFeedback" class="notice" role="status" aria-live="polite"></div>
+
+                <button class="btn btn--primary" type="submit">Versturen</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="./js/contact.js"></script>
+</body>
+</html>

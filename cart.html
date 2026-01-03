@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Winkelmand — SeaSalt Takeaway</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand__logo" aria-hidden="true">🧺</div>
+            <div>
+                <h1 class="brand__title">Jouw winkelmand</h1>
+                <p class="brand__tagline">Controleer je items, pas opties aan, en reken af</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav__link" href="./index.html">Menu</a>
+            <a class="nav__link" href="./contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="section">
+        <div id="cartMessage" class="notice" role="status" aria-live="polite"></div>
+
+        <div class="cart-layout">
+            <div>
+                <h3>Items</h3>
+                <div id="cartItems" class="cart-items"></div>
+            </div>
+
+            <aside class="checkout">
+                <h3>Afrekenen</h3>
+
+                <div class="panel">
+                    <div class="field">
+                        <label class="label" for="promoCode">Promocode</label>
+                        <div class="inline">
+                            <input id="promoCode" class="input" placeholder="bv. WELCOME10" />
+                            <button id="applyPromo" class="btn btn--ghost" type="button">Toepassen</button>
+                        </div>
+                        <div id="promoFeedback" class="notice" role="status" aria-live="polite"></div>
+                    </div>
+
+                    <div class="summary">
+                        <div class="summary__row">
+                            <span>Subtotaal</span>
+                            <strong id="subTotal">€ 0,00</strong>
+                        </div>
+                        <div class="summary__row">
+                            <span>Korting</span>
+                            <strong id="discount">€ 0,00</strong>
+                        </div>
+                        <div class="summary__row summary__row--total">
+                            <span>Totaal</span>
+                            <strong id="grandTotal">€ 0,00</strong>
+                        </div>
+                    </div>
+
+                    <button id="placeOrder" class="btn btn--primary btn--block" type="button">
+                        Bestelling plaatsen
+                    </button>
+
+                    <button id="clearCart" class="btn btn--ghost btn--block" type="button">
+                        Winkelmand leegmaken
+                    </button>
+
+                    <p class="muted small">
+                        One-time codes worden verwijderd na een geslaagde bestelling (simulatie).
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="./js/cart.js"></script>
+</body>
+</html>

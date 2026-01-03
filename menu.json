@@ -1,0 +1,103 @@
+{
+  "categories": [
+    {
+      "name": "Pasta",
+      "items": [
+        {
+          "id": "pasta-01",
+          "name": "Spaghetti Bolognese",
+          "description": "Rijke tomatensaus, rund, Parmezaan.",
+          "price": 12.5,
+          "isVeggie": false,
+          "maxQty": 5,
+          "options": [
+            { "key": "extra-cheese", "label": "Extra kaas", "type": "extra", "price": 1.2 },
+            { "key": "omit-onion", "label": "Zonder ui", "type": "omit", "price": 0 }
+          ]
+        },
+        {
+          "id": "pasta-02",
+          "name": "Pesto Veggie",
+          "description": "Basilicum pesto, kerstomaat, rucola.",
+          "price": 11.8,
+          "isVeggie": true,
+          "maxQty": 6,
+          "options": [
+            { "key": "extra-pesto", "label": "Extra pesto", "type": "extra", "price": 1.0 },
+            { "key": "omit-garlic", "label": "Zonder look", "type": "omit", "price": 0 }
+          ]
+        },
+        {
+          "id": "pasta-03",
+          "name": "Arrabbiata",
+          "description": "Pittige tomatensaus, chili, kruiden.",
+          "price": 10.9,
+          "isVeggie": true,
+          "maxQty": 6,
+          "options": [
+            { "key": "extra-chili", "label": "Extra chili", "type": "extra", "price": 0.7 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Soep",
+      "items": [
+        {
+          "id": "soup-01",
+          "name": "Tomatensoep",
+          "description": "Met basilicum en croutons.",
+          "price": 6.2,
+          "isVeggie": true,
+          "maxQty": 8,
+          "options": [
+            { "key": "extra-croutons", "label": "Extra croutons", "type": "extra", "price": 0.5 }
+          ]
+        },
+        {
+          "id": "soup-02",
+          "name": "Kippensoep",
+          "description": "Kippenbouillon, groenten, noedels.",
+          "price": 6.8,
+          "isVeggie": false,
+          "maxQty": 8,
+          "options": [
+            { "key": "omit-noodles", "label": "Zonder noedels", "type": "omit", "price": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ramen",
+      "items": [
+        {
+          "id": "ramen-01",
+          "name": "Miso Ramen",
+          "description": "Miso bouillon, ei, lente-ui.",
+          "price": 13.2,
+          "isVeggie": false,
+          "maxQty": 4,
+          "options": [
+            { "key": "extra-egg", "label": "Extra ei", "type": "extra", "price": 1.1 },
+            { "key": "omit-springonion", "label": "Zonder lente-ui", "type": "omit", "price": 0 }
+          ]
+        },
+        {
+          "id": "ramen-02",
+          "name": "Shoyu Veggie Ramen",
+          "description": "Sojasaus bouillon, tofu, paksoi.",
+          "price": 12.9,
+          "isVeggie": true,
+          "maxQty": 4,
+          "options": [
+            { "key": "extra-tofu", "label": "Extra tofu", "type": "extra", "price": 1.3 }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultDishOfDay": {
+    "source": "menu",
+    "id": "pasta-02"
+  }
+}
